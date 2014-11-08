@@ -15,6 +15,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJECTS) $(DEPS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS) $(LIBS)
+	strip $(TARGET)
 
 ifneq ($(MAKECMDGOALS), clean)
 -include $(DEPS)

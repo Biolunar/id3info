@@ -49,10 +49,12 @@ int main(int argc, char* argv[])
 	printf("Album:   \"%.30s\"\n", tag+63);
 	printf("Year:    \"%.4s\"\n", tag+93);
 	printf("Comment: \"%.30s\"\n", tag+97);
-	if (!tag[125]) // might be v1.1
+	if (!tag[125] && tag[126]) // v1.1
 	{
 		printf("Track:   \"%d\"\n", (int)*(tag+126));
 	}
+	if (tag[127] > 79)
+		tag[127] = 12; // set to 'Other'
 	printf("Genre:   \"%s\"\n", genres[(size_t)tag[127]]);
 
 	return EXIT_SUCCESS;
