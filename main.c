@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 	{
 		printf("Track:   \"%d\"\n", (int)*(tag+126));
 	}
-	if (tag[127] > 79)
+	if ((unsigned char)tag[127] > 79)
 		tag[127] = 12; // set to 'Other'
 	printf("Genre:   \"%s\"\n", genres[(size_t)tag[127]]);
 
