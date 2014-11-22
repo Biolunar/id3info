@@ -1,5 +1,5 @@
 TARGET   := ./id3info
-CXXFLAGS := -std=c11 -static -O3 -DNDEBUG -pedantic-errors -Wall -Wextra
+CXXFLAGS := -std=c11 -static -O3 -march=native -DNDEBUG -pedantic-errors -Wall -Wextra
 CXX      := musl-gcc
 LIBS     :=
 EXT      := c
