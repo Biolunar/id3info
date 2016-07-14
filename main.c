@@ -35,15 +35,15 @@ int main(int argc, char* argv[])
 
 	if (argc < 2)
 	{
-		printf("usage: id3info <filename>\n");
-		printf("(c) 2014 Biolunar\n");
+		printf(u8"usage: id3info <filename>\n");
+		printf(u8"© 2014–2016 Biolunar\n");
 		return EXIT_SUCCESS;
 	}
 
 	FILE* file = fopen(argv[1], "r");
 	if (!file)
 	{
-		fprintf(stderr, "Failed to open file.\n");
+		fprintf(stderr, u8"Failed to open file.\n");
 		return EXIT_FAILURE;
 	}
 	fseek(file, -128, SEEK_END);
@@ -54,22 +54,22 @@ int main(int argc, char* argv[])
 
 	if (strncmp(tag, "TAG", 3))
 	{
-		printf("No ID3v1 tag found.\n");
+		printf(u8"No ID3v1 tag found.\n");
 		return EXIT_SUCCESS;
 	}
 
-	printf("Title:   \"%.30s\"\n", tag+3);
-	printf("Artist:  \"%.30s\"\n", tag+33);
-	printf("Album:   \"%.30s\"\n", tag+63);
-	printf("Year:    \"%.4s\"\n", tag+93);
-	printf("Comment: \"%.30s\"\n", tag+97);
+	printf(u8"Title:   \"%.30s\"\n", tag+3);
+	printf(u8"Artist:  \"%.30s\"\n", tag+33);
+	printf(u8"Album:   \"%.30s\"\n", tag+63);
+	printf(u8"Year:    \"%.4s\"\n", tag+93);
+	printf(u8"Comment: \"%.30s\"\n", tag+97);
 	if (!tag[125] && tag[126]) // v1.1
 	{
 		printf("Track:   \"%d\"\n", (int)*(tag+126));
 	}
 	if ((unsigned char)tag[127] > 191)
 		tag[127] = 12; // set to 'Other'
-	printf("Genre:   \"%s\"\n", genres[(size_t)(unsigned char)tag[127]]);
+	printf(u8"Genre:   \"%s\"\n", genres[(size_t)(unsigned char)tag[127]]);
 
 	return EXIT_SUCCESS;
 }
